@@ -1,6 +1,6 @@
 # Triple Redaction Example
 
-This project shos some examples of how you can apply rules to mask the subjects, predicates and objects of RDF triples stored in MarkLogic.
+This project shows some examples of how you can apply rules to mask the subjects, predicates and objects of RDF triples stored in MarkLogic.
 
 ## Redaction Rules
 In the [redactionRules](src/main/ml-schemas/redactionRules) folder, you will find rules for redacting the subject, predicate and object separately. Depending on how you want to redaction to work, you can apply different rules when exporting your RDF triples.
