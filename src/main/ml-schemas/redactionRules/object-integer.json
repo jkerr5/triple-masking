@@ -1,0 +1,22 @@
+{
+	"rule": {
+		"description": "Generate random integer objects in embedded XML triples. Set the min and max options or delete them if you don't want to have values for them.",
+		"path": "//sem:triple/sem:object[@datatype='http://www.w3.org/2001/XMLSchema#integer']",
+		"namespaces": [ 
+		    {
+		    	"namespace": { 
+		      		"prefix": "sem",
+		      		"namespaceUri": "http://marklogic.com/semantics"
+		    	}
+		    }
+		],		
+		"method": {
+			"function": "redact-number"
+		},
+		"options": {
+			"type" : "integer",
+			"min" : 0,
+			"max" : 10000000
+		}
+	}
+}

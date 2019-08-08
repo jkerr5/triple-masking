@@ -1,0 +1,22 @@
+{
+	"rule": {
+		"description": "Mask integer objects in embedded XML triples. Set the length option to control how big the number can be.",
+		"path": "//sem:triple/sem:object[@datatype='http://www.w3.org/2001/XMLSchema#integer']",
+		"namespaces": [ 
+		    {
+		    	"namespace": { 
+		      		"prefix": "sem",
+		      		"namespaceUri": "http://marklogic.com/semantics"
+		    	}
+		    }
+		],		
+		"method": {
+			"function": "mask-deterministic"
+		},
+		"options": {
+			"salt" : "my salt",
+			"length" : "10",
+			"character" : "numeric"
+		}
+	}
+}

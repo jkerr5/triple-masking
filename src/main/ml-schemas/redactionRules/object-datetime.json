@@ -1,0 +1,22 @@
+{
+	"rule": {
+		"description": "Generate random date time objects in embedded XML triples. Set the range option to constrain the years that the random dates will fall within.",
+		"path": "//sem:triple/sem:object[@datatype='http://www.w3.org/2001/XMLSchema#dateTime']",
+		"namespaces": [ 
+		    {
+		    	"namespace": { 
+		      		"prefix": "sem",
+		      		"namespaceUri": "http://marklogic.com/semantics"
+		    	}
+		    }
+		],		
+		"method": {
+			"function": "redact-datetime"
+		},
+		"options": {
+			"format" : "[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01].[f][Z]",
+			"level" : "random",
+			"range" : "1990,2019"
+		}
+	}
+}

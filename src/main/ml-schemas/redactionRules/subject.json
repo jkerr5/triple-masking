@@ -1,0 +1,20 @@
+{
+	"rule": {
+		"description": "mask subject in embedded XML triples",
+		"path": "//sem:triple/sem:subject",
+		"namespaces": [ 
+		    {
+		    	"namespace": { 
+		      		"prefix": "sem",
+		      		"namespaceUri": "http://marklogic.com/semantics"
+		    	}
+		    }
+		],		
+		"method": {
+			"function": "mask-deterministic"
+		},
+		"options": {
+			"salt" : "my salt"
+		}
+	}
+}

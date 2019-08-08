@@ -1,0 +1,46 @@
+/*
+ * This buildscript shows how mlcp dependencies can be easily declared and then uses in a Gradle configuration named
+ * "mlcp". This configuration is then used as the classpath for MlcpTask, which is a simple extension of Gradle's
+ * JavaExec task that exposes mlcp arguments as task attributes.
+ */
+
+plugins {
+	id "com.marklogic.ml-gradle" version "3.16.0"
+}
+
+repositories {
+	jcenter()
+
+	// Needed for some mlcp dependencies, such as commons-csv:1.5.1-marklogic
+	maven { url "http://developer.marklogic.com/maven2/" }
+}
+
+
+configurations {
+	mlcp
+}
+
+dependencies {
+	mlcp "com.marklogic:mlcp:9.0.10"
+
+	/**
+	 * mlcp uses Log4j for logging, and if Log4j can't find a configuration file, it will complain and you'll
+	 * get none of mlcp's usually-useful logging. It is recommended then that your Gradle configuration for
+	 * mlcp include a directory or some other resource that provides a log4j.properties file.
+	 */
+	mlcp files("lib")
+}
+
+/**
+ */
+task exportTriplesRedacted(type: com.marklogic.gradle.task.MlcpTask) {
+	description = "Export all managed triples and apply redaction rules"
+	classpath = configurations.mlcp
+	command = "EXPORT"
+	port = 8000
+	database = mlAppConfig.contentDatabaseName
+	output_file_path = "data/export"
+	compress = true
+	collection_filter = "http://marklogic.com/semantics#default-graph"
+	redaction = "security-rules"
+}

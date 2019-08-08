@@ -1,0 +1,20 @@
+{
+	"rule": {
+		"description": "mask object in embedded XML triples",
+		"path": "//sem:triple/sem:object[@datatype!=('http://www.w3.org/2001/XMLSchema#integer','http://www.w3.org/2001/XMLSchema#decimal','http://www.w3.org/2001/XMLSchema#dateTime')]",
+		"namespaces": [ 
+		    {
+		    	"namespace": { 
+		      		"prefix": "sem",
+		      		"namespaceUri": "http://marklogic.com/semantics"
+		    	}
+		    }
+		],		
+		"method": {
+			"function": "mask-deterministic"
+		},
+		"options": {
+			"salt" : "my salt"
+		}
+	}
+}
